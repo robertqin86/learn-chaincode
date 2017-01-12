@@ -115,7 +115,8 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 	return nil, nil
 }
 
-func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error){
+// read - query function to read key/value pair
+func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var key, jsonResp string
 	var err error
 
@@ -124,10 +125,7 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 	}
 
 	key = args[0]
-	//  While PutState allows you to set a key/value pair, 
-	//  GetState lets you read the value for a previously written key.
 	valAsbytes, err := stub.GetState(key)
-
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + key + "\"}"
 		return nil, errors.New(jsonResp)
