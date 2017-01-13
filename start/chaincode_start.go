@@ -14,13 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+// BLockchain Service reading chaincode and adding to the blockchain network will be done 
+// from a GitHub public repo. 
+
+// VERY IMPT: the changes to the chain code must be merged and deployed on the master branch! 
+// chaincodeID": {
+//      "path": "https://github.com/robertqin86/learn-chaincode/start" // the path points to master branch of the fork
+// }
+
 package main
 
 import (
-	"errors"
-	"fmt"
-
-	"github.com/hyperledger/fabric/core/chaincode/shim"
+	"errors" // errors - standard Go error format.
+	"fmt" //  contains Println for debugging/logging.
+    // To enable read and write functions on the ledger, your chaincode must import the chaincode shim from Hyperledger Fabric.
+    // To compile your chaincode locally, you must have the Hyperledger Fabric code location specified in your GOPATH environment variable.
+    // Note: github.com/hyperledger/fabric/core/chaincode/shim is in your local repo which you clone using git clone -b v0.6 http://gerrit.hyperledger.org/r/fabric
+    // github.com/hyperledger/fabric/core/chaincode/shim - code that interfaces your Golang code with a network peer.
+	"github.com/hyperledger/fabric/core/chaincode/shim" 
 )
 
 // SimpleChaincode example simple Chaincode implementation
